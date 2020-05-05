@@ -30,18 +30,22 @@ pipeline {
             }
         }
 
-        stage('Deliver') {
-            agent {
-                docker {
-                    image 'cdrx/pyinstaller-linux:python2'
-                }
+        stage('Deliver') { 
+            agent any
+            environment { 
+                VOLUME = '$(pwd)/sources:/src'
+                IMAGE = 'cdrx/pyinstaller-linux:python2'
             }
             steps {
-                sh 'pyinstaller --onefile sources/tictactoe.py'
+                dir(path: env.BUILD_ID) { 
+                    unstash(name: 'compiled-results') 
+                    sh "docker run --rm -v ${VOLUME} ${IMAGE} 'pyinstaller -F tictactoe.py'" 
+                }
             }
             post {
                 success {
-                    archiveArtifacts 'dist/TicTacToe'
+                    archiveArtifacts "${env.BUILD_ID}/sources/dist/TicTacToe" 
+                    sh "docker run --rm -v ${VOLUME} ${IMAGE} 'rm -rf build dist'"
                 }
             }
         }
