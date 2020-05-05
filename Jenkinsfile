@@ -49,12 +49,5 @@ pipeline {
                 }
             }
         }
-
-	stage('Deploy - Production') {
-	    steps {
-		echo 'Deploying'
-		sh './deployment'
-	    }	
-	}
     }
 }
