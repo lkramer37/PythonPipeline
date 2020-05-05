@@ -29,7 +29,28 @@ class MyTestCase(unittest.TestCase):
         test_board = tictactoe.Board()
         player = 'X'
         self.assertFalse(test_board.has_winner(player))
+    
+    def test_has_winner(self):
+        player = 'X'
 
+        winner_board = tictactoe.Board()
+        winner_board.boardArr[0] = 'X'
+        winner_board.boardArr[1] = 'X'
+        winner_board.boardArr[2] = 'X'
+        self.assertTrue(winner_board.has_winner(player))
+
+        col_board = tictactoe.Board()
+        col_board.boardArr[0] = 'X'
+        col_board.boardArr[3] = 'X'
+        col_board.boardArr[6] = 'X'
+        self.assertTrue(col_board.has_winner(player))
+
+        diag_board = tictactoe.Board()
+        diag_board.boardArr[0] = 'X'
+        diag_board.boardArr[4] = 'X'
+        diag_board.boardArr[8] = 'X'
+        self.assertTrue(diag_board.has_winner(player))
+    
     def test_convert_arr(self):
         self.assertEqual(tictactoe.convert_arr(1, 1), 0)
         self.assertEqual(tictactoe.convert_arr(1, 2), 1)
