@@ -9,4 +9,6 @@ The repository contains a simple Python application for playing Tic Tac Toe on t
 The delivery of the Tic Tac Toe game through PyInstaller converts this tool into a standalone executable file for Linux, which you can download through Jenkins and execute at the command line on Linux machines without Python.
 
 The `Jenkinsfile` implements the pipeline through Jenkins
+Webhook for automated build
+
 
