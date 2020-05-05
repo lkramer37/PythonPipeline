@@ -10,5 +10,3 @@ The delivery of the Tic Tac Toe game through PyInstaller converts this tool into
 
 The `Jenkinsfile` implements the pipeline through Jenkins
 
-
-TESTING WEBHOOK
